@@ -1,0 +1,44 @@
+body {
+    background-color: #faebd7;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+#score {
+    text-align: center;
+    font-size: 50px;
+}
+
+#highscore {
+    position: absolute;
+    bottom: 5%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 20px;
+}
+
+#snakeCanvas {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+input[type=button] {
+    cursor: pointer;
+    font-size: 20px;
+    width: 10%;
+    height: 5%;
+    background-color: #f0f8ff;
+    color: black;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    border-radius: 20px;
+    border: 1px solid #292929;
+    position: absolute;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+input[type=button]:hover{
+    background-color: #c1cdd6;
+}
