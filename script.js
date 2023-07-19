@@ -8,6 +8,13 @@ let boardBackground = "grey";
 let snakeColor = "green";
 let snakeBorder = "darkgreen";
 
+const img = new Image();
+img.src = "img/snake.png";
+
+window.onload = function() {
+    ctx.drawImage(img, 50, 0, 290, 410);
+}
+
 var start = true;
 
 let snake = [
@@ -27,6 +34,7 @@ let dy = 0;
 
 let score = 0;
 let highscore = localStorage.getItem("highscore");
+if(highscore == null) highscore = 0;
 
 clearBoard();
 
@@ -177,7 +185,6 @@ function startSnake() {
 }
 
 function restart() {
-    
     if (hasGameEnded() || score == 0) {
         if (start == true) {
             startSnake();
