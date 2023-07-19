@@ -4,9 +4,11 @@ var ctx = canvas.getContext("2d");
 //var gameLoopInterval = setInterval(gameLoop, 100);
 
 let boardBorder = "black";
-let boardBackground = "lightgrey";
+let boardBackground = "grey";
 let snakeColor = "green";
 let snakeBorder = "darkgreen";
+
+var start = true;
 
 let snake = [
     { x: 200, y: 200 },
@@ -26,17 +28,21 @@ let dy = 0;
 let score = 0;
 let highscore = localStorage.getItem("highscore");
 
-main();
-generateApple();
+clearBoard();
 
 document.addEventListener("keydown", changeDirection);
-
+window.addEventListener("keydown", function(e) {
+    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+        e.preventDefault();
+    }
+}, false)
 document.getElementById("highscore").innerHTML = "Highscore: " + highscore;
 
 
 function main() {
     if (hasGameEnded()) {
-        document.getElementById("score").innerHTML = "Game Over!<br>Score: " +score;
+        document.getElementById("button").value = "Restart";
+        document.getElementById("score").innerHTML = "Game Over! Score: " + score;
         return;
     }
 
@@ -153,21 +159,30 @@ function drawApple() {
     ctx.strokeRect(appleX, appleY, 10, 10);
 }
 
+function startSnake() {
+    snake = [
+        { x: 200, y: 200 },
+        { x: 190, y: 200 },
+        { x: 180, y: 200 },
+        { x: 170, y: 200 },
+        { x: 160, y: 200 }
+    ]
+    main();
+    generateApple();
+    changingDirection = false;
+    dx = 10;
+    dy = 0;
+    score = 0;
+    document.getElementById("score").innerHTML = score;
+}
+
 function restart() {
-    if (hasGameEnded()) {
-        snake = [
-            { x: 200, y: 200 },
-            { x: 190, y: 200 },
-            { x: 180, y: 200 },
-            { x: 170, y: 200 },
-            { x: 160, y: 200 }
-        ]
-        main();
-        generateApple();
-        changingDirection = false;
-        dx = 10;
-        dy = 0;
-        score = 0;
-        document.getElementById("score").innerHTML = score;
+    
+    if (hasGameEnded() || score == 0) {
+        if (start == true) {
+            startSnake();
+        }
+        document.getElementById("button").value = "Start";
     }
+    start = true;
 }
