@@ -1,8 +1,6 @@
 var canvas = document.getElementById("snakeCanvas");
 var ctx = canvas.getContext("2d");
 
-//var gameLoopInterval = setInterval(gameLoop, 100);
-
 let boardBorder = "black";
 let boardBackground = "grey";
 let snakeColor = "green";
