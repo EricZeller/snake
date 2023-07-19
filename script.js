@@ -9,7 +9,7 @@ let snakeBorder = "darkgreen";
 const img = new Image();
 img.src = "img/snake.png";
 
-window.onload = function() {
+window.onload = function () {
     ctx.drawImage(img, 50, 0, 290, 410);
 }
 
@@ -26,19 +26,21 @@ let snake = [
 let appleX;
 let appleY;
 
+let touchdistance;
+let dir;
 let changingDirection = false;
 let dx = 10;
 let dy = 0;
 
 let score = 0;
 let highscore = localStorage.getItem("highscore");
-if(highscore == null) highscore = 0;
+if (highscore == null) highscore = 0;
 
 clearBoard();
 
 document.addEventListener("keydown", changeDirection);
-window.addEventListener("keydown", function(e) {
-    if([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
+window.addEventListener("keydown", function (e) {
+    if ([32, 37, 38, 39, 40].indexOf(e.keyCode) > -1) {
         e.preventDefault();
     }
 }, false)
@@ -109,6 +111,22 @@ function hasGameEnded() {
     return hitLeftWall || hitRightWall || hitTopWall || hitBottomWall;
 }
 
+
+function touchStarted() {
+    console.log("touchstarted");
+    touchDist = createVector(mouseX, mouseY);
+}
+function touchEnded() {
+    touchDist.sub(createVector(mouseX, mouseY));
+
+    if (abs(touchDist.x) > abs(touchDist.y)) { // hor
+        dir = touchDist.x < 0 ? 'right' : 'left';
+    }
+    else { // vert
+        dir = touchDist.y < 0 ? 'down' : 'up';
+    }
+}
+
 function changeDirection(event) {
     const LEFT_KEY = 37;
     const RIGHT_KEY = 39;
@@ -123,6 +141,7 @@ function changeDirection(event) {
     const goingDown = dy === 10;
     const goingRight = dx === 10;
     const goingLeft = dx === -10;
+
 
     if (keyPressed === LEFT_KEY && !goingRight) {
         dx = -10;
