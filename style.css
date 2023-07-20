@@ -2,6 +2,7 @@ body {
     background-color: #1a1612;
     font-family: monospace;
     color: #ffffff;
+    overflow: hidden; 
 }
 
 #score {
