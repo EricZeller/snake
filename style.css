@@ -3,6 +3,7 @@ body {
     font-family: monospace;
     color: #ffffff;
     overflow: hidden; 
+    max-width: 400px;
 }
 
 #score {
