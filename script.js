@@ -10,17 +10,21 @@ const img = new Image();
 img.src = "img/snake.png";
 
 window.onload = function () {
+    canvas.width = screen.width * 0.95;
+    canvas.height = screen.height * 0.7;
+    console.log(screen.width);
+    clearBoard();
     ctx.drawImage(img, 50, 0, 290, 410);
 }
 
 var start = true;
 
 let snake = [
-    { x: 200, y: 200 },
-    { x: 190, y: 200 },
-    { x: 180, y: 200 },
-    { x: 170, y: 200 },
-    { x: 160, y: 200 }
+    { x: 50, y: 200 },
+    { x: 40, y: 200 },
+    { x: 30, y: 200 },
+    { x: 20, y: 200 },
+    { x: 10, y: 200 }
 ]
 
 let appleX;
@@ -187,11 +191,11 @@ function drawApple() {
 
 function startSnake() {
     snake = [
-        { x: 200, y: 200 },
-        { x: 190, y: 200 },
-        { x: 180, y: 200 },
-        { x: 170, y: 200 },
-        { x: 160, y: 200 }
+        { x: 50, y: 200 },
+        { x: 40, y: 200 },
+        { x: 30, y: 200 },
+        { x: 20, y: 200 },
+        { x: 10, y: 200 }
     ]
     main();
     generateApple();
