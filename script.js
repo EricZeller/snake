@@ -6,21 +6,34 @@ let boardBackground = "grey";
 let snakeColor = "green";
 let snakeBorder = "darkgreen";
 
-const img = new Image();
-img.src = "img/snake.png";
+const snakeImg = document.getElementById("snakeImg");
 
 window.onload = function () {
-    ctx.drawImage(img, 50, 0, 290, 410);
+    if(screen.width > 800) {
+        canvas.width = 800;
+    } else {
+        canvas.width = screen.width * 0.98;
+    }
+    if(screen.height > 400) {
+        canvas.height = screen.height * 0.8;
+    } 
+    if (screen.width > screen.height){
+        canvas.height = screen.height * 0.5;
+    }
+    
+    
+    clearBoard();
+    snakeImg.width = canvas.width * 0.75;
 }
 
 var start = true;
 
 let snake = [
-    { x: 200, y: 200 },
-    { x: 190, y: 200 },
-    { x: 180, y: 200 },
-    { x: 170, y: 200 },
-    { x: 160, y: 200 }
+    { x: 50, y: 200 },
+    { x: 40, y: 200 },
+    { x: 30, y: 200 },
+    { x: 20, y: 200 },
+    { x: 10, y: 200 }
 ]
 
 let appleX;
@@ -127,6 +140,7 @@ function touchEnded() {
     }
 }
 */
+
 function changeDirection(event) {
     const LEFT_KEY = 37;
     const RIGHT_KEY = 39;
@@ -186,11 +200,11 @@ function drawApple() {
 
 function startSnake() {
     snake = [
-        { x: 200, y: 200 },
-        { x: 190, y: 200 },
-        { x: 180, y: 200 },
-        { x: 170, y: 200 },
-        { x: 160, y: 200 }
+        { x: 50, y: 200 },
+        { x: 40, y: 200 },
+        { x: 30, y: 200 },
+        { x: 20, y: 200 },
+        { x: 10, y: 200 }
     ]
     main();
     generateApple();
@@ -209,4 +223,48 @@ function restart() {
         document.getElementById("button").value = "Start";
     }
     start = true;
+    snakeImg.width = 0;
 }
+
+var myElement = document.body;
+// create a simple instance
+// by default, it only adds horizontal recognizers
+var mc = new Hammer(myElement);
+
+// let the pan gesture support all directions.
+// this will block the vertical scrolling on a touch-device while on the element
+mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+
+// listen to events...
+mc.on("panleft panright panup pandown tap press", function (ev) {   //ev.type 
+    if (changingDirection) return;
+    changingDirection = true;
+
+    const goingUp = dy === -10;
+    const goingDown = dy === 10;
+    const goingRight = dx === 10;
+    const goingLeft = dx === -10;
+
+    const pan = ev.type;
+
+
+    if (pan == "panleft" && !goingRight) {
+        dx = -10;
+        dy = 0;
+    }
+
+    if (pan == "panup" && !goingDown) {
+        dx = 0;
+        dy = -10;
+    }
+
+    if (pan == "panright" && !goingLeft) {
+        dx = 10;
+        dy = 0;
+    }
+
+    if (pan == "pandown" & !goingUp) {
+        dx = 0;
+        dy = 10;
+    }
+});

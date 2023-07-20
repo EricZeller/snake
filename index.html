@@ -1,19 +1,22 @@
 <!doctype html>
 <html>
-
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.7, minimum-scale=0.1, maximum-scale=0.7, user-scalable=no"> 
     <title>Snake by Eric</title>
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="img/repsnake.png">
 </head>
 
 <body>
+    <div id="myElement"></div>
     <div id="score">0</div>
     <div id="highscore">Highscore: 0</div>
-    <canvas id = "snakeCanvas" width="400" height="400"></canvas>
+    <canvas id="snakeCanvas"></canvas>
+    <img id="snakeImg" src="img/snake.png">
     <input id="button" type="button" name="reset" value="Start" onclick="restart()">
-    <script type="text/javascript" src="script.js"></script>
+    <script src="hammer.js"></script>
+    <script type="text/javascript" src="script.js">
+    </script>
 </body>
-
 </html>
