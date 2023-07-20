@@ -127,6 +127,7 @@ function touchEnded() {
     }
 }
 */
+
 function changeDirection(event) {
     const LEFT_KEY = 37;
     const RIGHT_KEY = 39;
@@ -210,3 +211,46 @@ function restart() {
     }
     start = true;
 }
+
+var myElement = document.body;
+// create a simple instance
+// by default, it only adds horizontal recognizers
+var mc = new Hammer(myElement);
+
+// let the pan gesture support all directions.
+// this will block the vertical scrolling on a touch-device while on the element
+mc.get('pan').set({ direction: Hammer.DIRECTION_ALL });
+
+// listen to events...
+mc.on("panleft panright panup pandown tap press", function (ev) {   //ev.type 
+    if (changingDirection) return;
+    changingDirection = true;
+
+    const goingUp = dy === -10;
+    const goingDown = dy === 10;
+    const goingRight = dx === 10;
+    const goingLeft = dx === -10;
+
+    const pan = ev.type;
+
+
+    if (pan == "panleft" && !goingRight) {
+        dx = -10;
+        dy = 0;
+    }
+
+    if (pan == "panup" && !goingDown) {
+        dx = 0;
+        dy = -10;
+    }
+
+    if (pan == "panright" && !goingLeft) {
+        dx = 10;
+        dy = 0;
+    }
+
+    if (pan == "pandown" & !goingUp) {
+        dx = 0;
+        dy = 10;
+    }
+});
