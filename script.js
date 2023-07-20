@@ -111,8 +111,8 @@ function hasGameEnded() {
     return hitLeftWall || hitRightWall || hitTopWall || hitBottomWall;
 }
 
-
-function touchStarted() {
+/*
+function touchStarted() {  //EXPERIMENTAL
     console.log("touchstarted");
     touchDist = createVector(mouseX, mouseY);
 }
@@ -126,7 +126,7 @@ function touchEnded() {
         dir = touchDist.y < 0 ? 'down' : 'up';
     }
 }
-
+*/
 function changeDirection(event) {
     const LEFT_KEY = 37;
     const RIGHT_KEY = 39;
