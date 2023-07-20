@@ -232,6 +232,7 @@ function restart() {
     }
     start = true;
     snakeImg.width = 0;
+    instructionImg.width = 0;
 }
 
 var myElement = document.body;
