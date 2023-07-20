@@ -7,23 +7,31 @@ let snakeColor = "green";
 let snakeBorder = "darkgreen";
 
 const snakeImg = document.getElementById("snakeImg");
+const instructionImg = document.getElementById("instructionImg");
 
 window.onload = function () {
-    if(screen.width > 800) {
+    if (screen.width > 800) {
         canvas.width = 800;
     } else {
         canvas.width = screen.width * 0.98;
     }
-    if(screen.height > 400) {
+    if (screen.height > 400) {
         canvas.height = screen.height * 0.8;
-    } 
-    if (screen.width > screen.height){
+    }
+    if (screen.width > screen.height) {
         canvas.height = screen.height * 0.5;
     }
-    
-    
+
+
     clearBoard();
-    snakeImg.width = canvas.width * 0.75;
+
+    if (snakeImg.height > canvas.height) {
+        instructionImg.width = canvas.width * 0.4;
+        snakeImg.height = canvas.height * 0.6;
+    } else {
+        snakeImg.width = canvas.width * 0.75;
+        instructionImg.width = canvas.width * 0.75;
+    }
 }
 
 var start = true;
@@ -131,7 +139,7 @@ function touchStarted() {  //EXPERIMENTAL
 }
 function touchEnded() {
     touchDist.sub(createVector(mouseX, mouseY));
-
+ 
     if (abs(touchDist.x) > abs(touchDist.y)) { // hor
         dir = touchDist.x < 0 ? 'right' : 'left';
     }
