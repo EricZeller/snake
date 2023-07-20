@@ -42,11 +42,18 @@ input[type=button] {
     border-radius: 20px;
     border: 1px solid #292929;
     position: absolute;
-    top: 90%;
+    top: 95%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
 input[type=button]:hover {
     background-color: #c1cdd6;
+}
+
+#snakeImg{
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
 }

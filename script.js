@@ -6,15 +6,24 @@ let boardBackground = "grey";
 let snakeColor = "green";
 let snakeBorder = "darkgreen";
 
-const img = new Image();
-img.src = "img/snake.png";
+const snakeImg = document.getElementById("snakeImg");
 
 window.onload = function () {
-    canvas.width = screen.width * 0.95;
-    canvas.height = screen.height * 0.7;
-    console.log(screen.width);
+    if(screen.width > 800) {
+        canvas.width = 800;
+    } else {
+        canvas.width = screen.width * 0.98;
+    }
+    if(screen.height > 400) {
+        canvas.height = screen.height * 0.8;
+    } 
+    if (screen.width > screen.height){
+        canvas.height = screen.height * 0.5;
+    }
+    
+    
     clearBoard();
-    ctx.drawImage(img, 50, 0, 290, 410);
+    snakeImg.width = canvas.width * 0.75;
 }
 
 var start = true;
@@ -214,6 +223,7 @@ function restart() {
         document.getElementById("button").value = "Start";
     }
     start = true;
+    snakeImg.width = 0;
 }
 
 var myElement = document.body;
